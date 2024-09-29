@@ -5,7 +5,7 @@ from tkinter import messagebox
 
 # מחלקת חיית המחמד הבסיסית
 class Tamagotchi(ABC):
-    def _init_(self, name: str, species: str):
+    def __init__(self, name: str, species: str):
         self.name = name
         self.species = species
         self.hunger = 5
@@ -20,16 +20,16 @@ class Tamagotchi(ABC):
 
 # תתי-מחלקות של חיות המחמד השונות
 class Dog(Tamagotchi):
-    def _init_(self, name: str):
-        super()._init_(name, "Dog")
+    def __init__(self, name: str):
+        super().__init__(name, "Dog")
 
     def display_status(self):
         return f"{self.name} the {self.species}\nHunger: {self.hunger}\nHappiness: {self.happiness}\nHealth: {self.health}\nEnergy: {self.energy}"
 
 
 class Cat(Tamagotchi):
-    def _init_(self, name: str):
-        super()._init_(name, "Cat")
+    def __init__(self, name: str):
+        super().__init__(name, "Cat")
 
     def display_status(self):
         return f"{self.name} the {self.species}\nHunger: {self.hunger}\nHappiness: {self.happiness}\nHealth: {self.health}\nEnergy: {self.energy}"
@@ -44,7 +44,7 @@ class Command(ABC):
 
 # פעולות של החיה
 class EatCommand(Command):
-    def _init_(self, pet: Tamagotchi, game_window):
+    def __init__(self, pet: Tamagotchi, game_window):
         self.pet = pet
         self.game_window = game_window
 
@@ -55,7 +55,7 @@ class EatCommand(Command):
 
 
 class SleepCommand(Command):
-    def _init_(self, pet: Tamagotchi, game_window):
+    def __init__(self, pet: Tamagotchi, game_window):
         self.pet = pet
         self.game_window = game_window
 
@@ -66,7 +66,7 @@ class SleepCommand(Command):
 
 
 class PlayCommand(Command):
-    def _init_(self, pet: Tamagotchi, game_window):
+    def __init__(self, pet: Tamagotchi, game_window):
         self.pet = pet
         self.game_window = game_window
 
@@ -79,7 +79,7 @@ class PlayCommand(Command):
 
 
 class ExerciseCommand(Command):
-    def _init_(self, pet: Tamagotchi, game_window):
+    def __init__(self, pet: Tamagotchi, game_window):
         self.pet = pet
         self.game_window = game_window
 
@@ -93,8 +93,8 @@ class ExerciseCommand(Command):
 
 # מחלקה לניהול המשחק
 class GameWindow(tk.Tk):
-    def _init_(self, pet: Tamagotchi):
-        super()._init_()
+    def __init__(self, pet: Tamagotchi):
+        super().__init__()
         self.pet = pet
         self.title(f"Tamagotchi - {self.pet.name}")
         self.geometry("300x400")
@@ -137,8 +137,8 @@ class GameWindow(tk.Tk):
 
 # חלון בחירת החיה
 class PetSelectionWindow(tk.Tk):
-    def _init_(self):
-        super()._init_()
+    def __init__(self):
+        super().__init__()
         self.title("Tamagotchi - Pet Selection")
         self.geometry("300x200")
 
@@ -170,6 +170,6 @@ class PetSelectionWindow(tk.Tk):
 
 
 # הפעלת המשחק עם חלון בחירת חיה
-if __name__ == "_main_":
+if __name__ == "__main__":
     pet_selection_window = PetSelectionWindow()
     pet_selection_window.mainloop()
